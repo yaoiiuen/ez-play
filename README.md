@@ -10,7 +10,7 @@ $ cd /your-project-path/ez-play
 
 [2.2.X]	ez-play $ play      clean update compile eclipse
 
-3、註冊twitter帳號，於下列位置輸入相關資訊
+3、註冊twitter帳號，至 https://apps.twitter.com create new app後，於下列位置輸入相關資訊
 
 app > util > Util.java
 
