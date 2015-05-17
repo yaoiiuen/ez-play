@@ -1,0 +1,100 @@
+@(title: String)(content: Html)
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+ <link rel="stylesheet" media="screen" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<link rel="stylesheet" media="screen" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/4.2.1/bootstrap-social.min.css">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+<link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/style.css")">
+<link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
+
+<script src="https://code.jquery.com/jquery-2.1.4.min.js" type="text/javascript"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js" type="text/javascript"></script>
+<script src="@routes.Assets.at("javascripts/hello.js")" type="text/javascript"></script>
+        <title>@title</title>
+    </head>
+    <body>
+    <div class="container">
+    <br/>
+    <div class="row">
+    <div class="col-md-6">
+        <form action="@routes.TwitterController.timeline()" method="post">
+        <div class="panel panel-info">
+  <div class="panel-heading">
+        <h3 class="panel-title" >Tweets ● Please Enter a Twitter Username</h3>
+      </div>
+  <div class="panel-body">
+    <div class="input-group">
+      <span class="input-group-btn">
+        <button class="btn btn-info" >SEND</button>
+      </span>
+      <input type="text" class="form-control" name="screenName" placeholder="Name">
+    </div>
+</div>
+</div>
+  </form> 
+  </div>
+  <div class="col-md-6">
+  <form action="@routes.TwitterController.updatestatus()" method="post">
+        <div class="panel panel-danger">
+  <div class="panel-heading">
+        <h3 class="panel-title" >Update status ● Post status messages ★ user context only</h3>
+      </div>
+  <div class="panel-body">
+    <div class="input-group">
+      <span class="input-group-btn">
+        <button class="btn btn-danger" >POST</button>
+      </span>
+      <input type="text" class="form-control" name="statusMsg" >
+    </div>
+</div>
+</div>
+  </form>
+  </div>
+  <div class="col-md-6">
+  <div class="panel panel-warning">
+  <div class="panel-heading"><h3 class="panel-title" >Create friendships ● Please Enter a Twitter Username ★ user context only</h3></div>
+  <div class="panel-body">
+  <form action="@routes.TwitterController.createfriendship()" method="post">
+    <div class="input-group">
+      <span class="input-group-btn">
+        <button class="btn btn-warning" >CREATE</button>
+      </span>
+      <input type="text" class="form-control" name="friendName" >
+    </div>
+    </form>
+  </div>
+</div>
+</div>
+<div class="col-md-6">
+<button class="btn btn-success" type="button" onclick="fnDirectMsg();"><i class="glyphicon glyphicon-pencil"></i> New Message</button>
+</div>
+  </div><!-- ./row -->
+  @content
+    </div>
+    <div class="spinner">
+  <div class="spinner-container container1">
+    <div class="circle1"></div>
+    <div class="circle2"></div>
+    <div class="circle3"></div>
+    <div class="circle4"></div>
+  </div>
+  <div class="spinner-container container2">
+    <div class="circle1"></div>
+    <div class="circle2"></div>
+    <div class="circle3"></div>
+    <div class="circle4"></div>
+  </div>
+  <div class="spinner-container container3">
+    <div class="circle1"></div>
+    <div class="circle2"></div>
+    <div class="circle3"></div>
+    <div class="circle4"></div>
+  </div>
+</div>
+
+    </body>
+</html>

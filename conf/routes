@@ -1,0 +1,18 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page; play-2.2.2 need to start from @
+GET 		/		 			@controllers.IndexController.index()
+POST 	/pt/token 		@controllers.IndexController.requesttoken()
+GET 		/callback	@controllers.IndexController.accessaccount()
+
+POST 	/pt/timeline 	@controllers.TwitterController.timeline()
+POST 	/pt/update 		@controllers.TwitterController.updatestatus()
+POST 	/pt/createFS 	@controllers.TwitterController.createfriendship()
+
+# ajax call
+POST 	/pt/:methodName 	@controllers.TwitterController.ajaxCalledMethod(methodName:String)
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.at(path="/public", file)

@@ -1,0 +1,66 @@
+@(result: List[Map[String,Object]])
+
+	@main("Play Timeline"){
+		@timelineBlock(result) 
+	}
+
+	@*-----  funciton: create timeline view  -----*@ 
+	@timelineBlock(data : List[Map[String,Object]]) = { 
+	@for(i<-0 to data.size -1){
+	
+	@if(null == data.get(i).get("errorMsg")){
+	<div class='panel panel-success'>
+		<div class='panel-heading'>
+			<h3 class='panel-title'>@data.get(i).get("screenName")
+				@data.get(i).get("createdAt")</h3>
+		</div>
+		<div class='panel-body'>
+			<div class='col-md-12' id='content_@data.get(i).get("statusId")'>
+				<img src='@data.get(i).get("profileImgUrl")'></img>
+				@data.get(i).get("text")
+			</div>
+			@if(null != data.get(i).get("mediaUrl")){ 
+			@* TODO cannot show multiple mediaUrl*@
+			<div class='col-md-6'>
+				<img width='@data.get(i).get("smallWidth")'
+					height='@data.get(i).get("smallHeight")'
+					src='@data.get(i).get("mediaUrl")'></img>
+			</div>
+			}
+		</div>
+	
+		@*--------------- reply, rt, favorite ---------------*@
+		<div class='panel-footer'>
+			<div class='btn-group btn-group-sm'>
+				<button type='button' class='btn btn-default'
+					id='reply_@data.get(i).get("statusId")'
+					onclick='fnReply(this.id,"@data.get(i).get("screenName")")'>
+					<i class='glyphicon glyphicon-share-alt'></i>
+				</button>
+	
+				<button type='button' class='btn btn-default'
+					id='rt_@data.get(i).get("statusId")' onclick='fnRT(this.id)'>
+					<i class='glyphicon glyphicon-retweet'></i> @data.get(i).get("retweetCount")
+				</button>
+	
+				<button type='button' class='btn btn-default'
+					id='favo_@data.get(i).get("statusId")' onclick='fnFavorite(this.id)'>
+					<i class='glyphicon glyphicon-heart'></i> @data.get(i).get("favoriteCount")
+				</button>
+	
+				@if(data.get(i).get("isAdmin") == true){
+				<button type='button' class='btn btn-default'
+					id='delete_@data.get(i).get("statusId")' onclick='fnDel(this.id)'>
+					<i class='glyphicon glyphicon-remove'></i>
+				</button>
+				}
+			</div>
+		</div>
+	</div>
+	<br />
+		}else{
+		@* has error message *@
+		<div class='alert alert-danger'>@data.get(i).get("errorMsg")</div>
+		}
+	} 
+}
